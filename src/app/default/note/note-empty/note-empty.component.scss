@@ -1,0 +1,9 @@
+.empty {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    nz-empty {
+        transform: translateY(-100px)
+    } 
+}

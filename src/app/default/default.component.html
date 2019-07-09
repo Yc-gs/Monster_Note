@@ -1,0 +1,96 @@
+<nz-layout class="layout">
+  <nz-header style="width:100%;background: #0AA679;padding: 0 8px;">
+    <div *ngIf="!isCollapsed" class="logo">MONSTER NOTE</div>
+    <div *ngIf="isCollapsed" class="logo-collapse logo">NOTE</div>
+    <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="toggleCollapsed()"
+      style="margin-right: 8px;box-shadow: none;width:40px;height: 36px;">
+      <i nz-icon style="font-size: 20px;" [type]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+    </button>
+    <nz-input-group nzSize="large" [nzPrefix]="prefixIconSearch">
+      <input type="text" nz-input placeholder="搜索笔记本" />
+    </nz-input-group>
+    <ng-template #prefixIconSearch>
+      <i nz-icon type="search" style="color: #fff;font-size: 18px;"></i>
+    </ng-template>
+    <nz-dropdown [nzPlacement]="'bottomRight'" style="margin: 0 8px;">
+      <button [nzType]="'primary'" [nzSize]="'large'" style="box-shadow: none;height: 36px;" nz-button
+        nz-dropdown>Admin</button>
+      <ul nz-menu>
+        <li nz-menu-item>
+          <a>个人信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </li>
+        <li nz-menu-item>
+          <a>个人设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </li>
+        <li nz-menu-divider></li>
+        <li nz-menu-item>
+          <a (click)="logOut()">退出登陆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </li>
+      </ul>
+    </nz-dropdown>
+  </nz-header>
+  <nz-layout>
+    <nz-sider class="innerScroll" [nzWidth]="isCollapsed ? 80 : 200" style="background:#fff;overflow: auto;">
+      <ul nz-menu [nzMode]="'inline'" nzTheme="light" [nzInlineCollapsed]="isCollapsed">
+        <li nz-submenu [nzOpen]="true">
+          <span title>
+            <i nz-icon nzType="file-text" nzTheme="outline"></i>
+            <span class="noteTitle">笔记本</span>
+          </span>
+          <ul>
+            <li class="firstLi">
+              <input nz-input style="width: 80%;margin-right: 8px;margin-top: 3px;" placeholder="搜索笔记本" [(ngModel)]="searchNote" />
+              <button nzTitle="添加笔记本" nzPlacement="top" nz-tooltip nz-button nzType="primary" [nzSize]="'small'" nzShape="circle">
+                <i nz-icon nzType="plus"></i>
+              </button>
+            </li>
+            <li>
+                <nz-tree
+                #treeCom
+                [nzData]="nodes"
+                nzMultiple="true"
+                (nzClick)="activeNode($event)"
+                (nzDblClick)="openFolder($event)">
+                <ng-template #contextTemplate>
+                  <ul nz-menu nzInDropDown>
+                    <li nz-menu-item (click)="selectDropdown('file')">新建文件</li>
+                    <li nz-menu-item (click)="selectDropdown('folder')">新建文件夹</li>
+                  </ul>
+                </ng-template>
+                <ng-template #nzTreeTemplate let-node>
+                  <span class="custom-node" [class.active]="activedNode?.key===node.key">
+                    <span *ngIf="!node.isLeaf" (contextmenu)="contextMenu($event,contextTemplate)">
+                      <i nz-icon [type]="node.isExpanded ? 'folder-open' : 'folder'" (click)="openFolder(node)"></i>
+                      <span class="folder-name">{{node.title}}</span>
+                      <span class="folder-desc">(2)</span>
+                    </span>
+                    <span *ngIf="node.isLeaf">
+                      <i nz-icon type="file"></i>
+                      <span class="file-name">{{node.title}}</span>
+                    </span>
+                  </span>
+                </ng-template>
+              </nz-tree>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu>
+          <span title>
+            <i nz-icon type="setting"></i>
+            <span>Navigation Three</span>
+          </span>
+          <ul>
+            <li nz-menu-item [routerLink]="[ '/default/orders' ]">Option 9</li>
+            <li nz-menu-item>Option 10</li>
+            <li nz-menu-item>Option 11</li>
+          </ul>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout class="innerScroll" style="padding: 15px">
+      <div [@routeAnimation]="getAnimationData(routerOutlet)">
+        <router-outlet #routerOutlet="outlet"></router-outlet>
+      </div>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>

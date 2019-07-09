@@ -1,0 +1,114 @@
+$primary-color : #0AA679;
+
+.layout {
+  width: 100%;
+  height: 100vh;
+
+  nz-header {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      width: 187px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.2);
+      margin: 13px 10px 13px 0;
+      line-height: 36px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      float: left;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    nz-input-group {
+      flex: 1;
+
+      ::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: #fff;
+      }
+
+      :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #fff;
+      }
+
+      ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #fff;
+      }
+
+      :-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: #fff;
+      }
+
+      input {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: #fff;
+        padding-left: 40px;
+      }
+    }
+  }
+
+  .logo-collapse {
+    width: 67px !important;
+  }
+
+  nz-layout {
+    .noteTitle {
+      color: $primary-color;
+      font-weight: bold;
+    }
+
+    .firstLi {
+      padding: 0 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+:host ::ng-deep .ant-tree {
+  overflow: hidden;
+  margin: 0 -24px;
+  padding: 0 24px;
+}
+
+:host ::ng-deep .ant-tree li {
+  padding: 4px 0 0 0;
+}
+
+.custom-node {
+  cursor: pointer;
+  line-height: 24px;
+  margin-left: 4px;
+  display: inline-block;
+  margin: 0 -1000px;
+  padding: 0 1000px;
+}
+
+.active {
+  background: $primary-color;
+  color: #fff;
+  .folder-desc {
+  color: #fff;
+    
+  }
+}
+
+.file-name, .folder-name {
+  margin-left: 4px;
+}
+
+.file-desc, .folder-desc {
+  padding: 0 3px;
+  display: inline-block;
+  color: #000000;
+  position: relative;
+  left: 12px;
+}

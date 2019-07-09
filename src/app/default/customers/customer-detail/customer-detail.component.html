@@ -1,0 +1,5 @@
+<nz-card style="width:100%;" [nzBordered]="false" [nzTitle]="null">
+  <p *ngFor="let item of majors | objectKey">
+    {{item.key + '------>' + item.value}}
+  </p>
+</nz-card>

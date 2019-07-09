@@ -1,0 +1,12 @@
+<div class="empty">
+  <nz-empty [nzNotFoundImage]="
+      'https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original'
+    " [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+    <ng-template #contentTpl>
+      <span>暂无数据</span>
+    </ng-template>
+    <ng-template #footerTpl>
+      <button nz-button nzType="primary" (click)="onClick()">添加笔记</button>
+    </ng-template>
+  </nz-empty>
+</div>

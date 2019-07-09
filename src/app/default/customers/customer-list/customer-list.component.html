@@ -1,0 +1,16 @@
+<!-- <nz-card style="width:100%;" [nzBordered]="false" [nzTitle]="null">
+    <nz-list [nzDataSource]="data" nzBordered [nzHeader]="null" [nzFooter]="null" [nzRenderItem]="item">
+      <ng-template #item let-item>
+        <nz-list-item [nzContent]="item.major_chinese_name" [routerLink]="[ '/default/customers/customer-detail', item.id ]"></nz-list-item>
+      </ng-template>
+    </nz-list>
+</nz-card> -->
+<nz-card style="width:100%;margin-bottom: 20px;" [nzBordered]="false" [nzTitle]="null">
+  <app-tiny-editor
+    [elementId]="'my-editor'"
+    (onEditorContentChange)="keyupHandler($event)">
+  </app-tiny-editor>
+</nz-card>
+<nz-card style="width:100%;" [nzBordered]="false" [nzTitle]="null">
+  <div [innerHTML]="content | html"></div>
+</nz-card>

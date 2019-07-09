@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="logo">
+    MONSTER NOTE
+  </div>
+  <div class="content">
+    <div class="bar">
+      登录
+    </div>
+    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="user">
+            <input type="email" nz-input formControlName="email" placeholder="用户名或Email" />
+          </nz-input-group>
+        </nz-form-control>
+        <nz-form-explain *ngIf="validateForm.get('email')?.dirty && validateForm.get('email')?.errors">请输入用户名或邮箱
+        </nz-form-explain>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="lock">
+            <input type="pwd" nz-input formControlName="pwd" placeholder="密码" />
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('pwd')?.dirty && validateForm.get('pwd')?.errors">密码
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <label nz-checkbox formControlName="remember">
+            <span>记住密码</span>
+          </label>
+          <a class="login-form-forgot" class="login-form-forgot">忘记密码</a>
+          <button nz-button class="login-form-button" [nzType]="'primary'">登录</button>
+          <button nz-button class="login-form-button" [nzType]="'default'">注册</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
